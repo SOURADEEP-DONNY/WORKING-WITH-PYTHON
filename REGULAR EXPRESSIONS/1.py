@@ -20,3 +20,9 @@ print(bool(re.match('a',"abcd")))
 #BOOLEAN SEARCH
 print(bool(re.search("Donny","Donny is an engineer")))
 print(bool(re.search("table tennis","Donny plays table tennis.")))
+
+#PRINTING INDEX
+print(re.search("Donny","Donny is an engineer").start())
+print(re.search("Donny","Donny is an engineer").end())
+print(re.search("table tennis","Donny plays table tennis.").start())
+print(re.search("table tennis","Donny plays table tennis.").end())
