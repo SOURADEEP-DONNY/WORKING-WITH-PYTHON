@@ -19,20 +19,21 @@ if N>1 and N<=100:
                 dist.append(s)
                 #print(dist)
             final_dist_for_all.append(dist)
-        print(final_dist_for_all)
+        #print(final_dist_for_all)
 
 
 
         
         for i in range(T):
             list2.append(list(list(zip(*final_dist_for_all))[i]))
-        print(list2)
+        #print(list2)
 
         for i in range(1,len(list2),2):
             m=max(list2[i])
             for j in range(len(list2[i])):
                 if m==list2[i][j]:
                     participant.append(j+1)
+                    participant.sort()
 
         res=dict(Counter(participant))
         values=list(res.values())
