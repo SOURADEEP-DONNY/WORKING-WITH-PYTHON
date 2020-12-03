@@ -1,14 +1,10 @@
-list1=[(1,3),(2,6),(5,8),(3,1)]
-list2=[]
-list3=[]
-for i in list1:
-    list2.append(i[-1])
+n = int(input().strip())
+B = list(map(int, list(input().strip())))
 
-list2.sort()
-##print(list2)
-for i in list2:
-    for j in list1:
-        if i==j[-1]:
-            list3.append(j)
-##print(list1)
-print(list3)
+count = 0
+
+for i in range(2,n):
+    if (B[i]==0 and B[i-1]==1 and B[i-2]==0):
+        B[i]=1
+        count += 1
+print(count)
