@@ -1,0 +1,6 @@
+f=open("pro.txt","r")
+s=f.read()
+l=len(s)
+print("The File Length is: ")
+print(l)
+f.close()
