@@ -1,0 +1,6 @@
+f=open("pro.txt","r")
+s=f.readline()
+print(s,end="")
+s1=f.readline()
+print(s1,end="")
+f.close()
