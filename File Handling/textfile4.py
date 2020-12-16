@@ -1,0 +1,5 @@
+file=open("Std.txt","w")
+r=input("Enter Roll: ")
+n=input("Enter Name: ")
+file.write(f'Roll is: {r}\nName: {n}' )
+file.close()
