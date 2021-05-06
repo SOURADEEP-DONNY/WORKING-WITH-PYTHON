@@ -1,53 +1,74 @@
 class Product:
-    def __init__(self,productName,productType,productPrice,quantityOnHands,reorderingQuantity):
+    def __init__(self,productName,productType,productPrice,quantityOnHand,reorderedQuantity):
         self.productName=productName
         self.productType=productType
         self.productPrice=productPrice
-        self.quantityOnHands=quantityOnHands
-        self.reorderingQuantity=reorderingQuantity
+        self.quantityOnHand=quantityOnHand
+        self.reorderedQuantity=reorderedQuantity
 
-def findAvailableStock(productList,inputList):
-    c=0
-    for i in inputList:
-        for j in productList:
-            if i.lower()==j.productName.lower():
-                print(i,j.quantityOnHands)
-                c=c+1
-    if c==0:
-        print('Product Not Found')
-
-def updateStockByProductType(productList,quantity,Type):
+def findAvailableStock(productList,lpn):
+    lname=[]
+    lcoun=[]
     c=0
     for i in productList:
-        if i.productType.lower()==Type.lower():
-            c=c+1
-            if i.quantityOnHands <= reorderingQuantity:
-                i.quantityOnHands=i.quantityOnHands+quantity
-
+        for j in lpn:
+            if i.productName == j:
+                lname.append(i.productName)
+                lcoun.append(i.quantityOnHand)
+                c=c+1
+    data=dict(zip(lname,lcoun))
     if c==0:
-        print('Product Not Found')
+        return None
     else:
-        for i in productList:
-            print(i.productName,i.quantityOnHands)
+        return data
+
+
+def updateStockByProductType(productList,num,ptype):
+    lname=[]
+    lqty=[]
+    c=0
+    for i in productList:
+        if i.productType==ptype:
+            c=c+1
+            if num > i.quantityOnHand:
+                i.quantityOnHand=i.quantityOnHand+num
+            else:
+                i.quantityOnHand=i.quantityOnHand + 0
+        lname.append(i.productName)
+        lqty.append(i.quantityOnHand)
+    data=dict(zip(lname,lqty))
+    if c==0:
+        return None
+    else:
+        return data
+
 if __name__=='__main__':
+    n=int(input())
     productList=[]
-    for i in range(5):
+    for i in range(n):
         productName=input()
         productType=input()
         productPrice=int(input())
-        quantityOnHands=int(input())
-        reorderingQuantity=int(input())
-        b=Product(productName,productType,productPrice,quantityOnHands,reorderingQuantity)
+        quantityOnHand=int(input())
+        reorderedQuantity=int(input())
+        b=Product(productName,productType,productPrice,quantityOnHand,reorderedQuantity)
         productList.append(b)
-
+    no=int(input())
+    lpn=[]
+    for i in range(no):
+        lpn.append(input())
     num=int(input())
-    inputList=[]
-    for i in range(num):
-        inputList.append(input())
-    findAvailableStock(productList,inputList)
-    pquantity=int(input())
     ptype=input()
-    updateStockByProductType(productList,pquantity,ptype)
-
-
-
+    res=findAvailableStock(productList,lpn)
+    res1=updateStockByProductType(productList,num,ptype)
+    if res==None:
+        print('Product Not Found')
+    else:
+        for i in res:
+            print(i,res[i])
+    if res1==None:
+        print('Product Not Found')
+    else:
+        for i in res1:
+            print(i,res1[i])
+        
